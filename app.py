@@ -25,7 +25,7 @@ def homepage():
 
 @app.route("/add", methods=["GET", "POST"])
 def add_pet():
-    """this thing """
+    """add pet """
     form = AddPetForm()
     if form.validate_on_submit():
         name = form.name.data
@@ -51,12 +51,12 @@ def edit_pet(pet_id):
     if form.validate_on_submit():
         pet.photo_url = form.photo_url.data
         pet.notes = form.notes.data
-        pet.available = form.available.data  # Assuming 'available' is a field in EditPetForm
+        pet.available = form.available.data  
 
         db.session.commit()
-        return redirect(f'/{pet_id}')
+        return redirect('/')
     else:
-    # Pre-populate the form with existing pet data for editing
+
         form.photo_url.data = pet.photo_url
         form.notes.data = pet.notes
         form.available.data = pet.available
